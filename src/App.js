@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import NavBar from './components/NavBar/NavBar';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import BreedsPage from './pages/BreedsPage/BreedsPage';
+import BreedPage from './pages/BreedPage/BreedPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="app">
+      <header>
+        <span className="header-text">Dog-Book</span>
       </header>
+
+      <NavBar/>      
+
+      <HashRouter>
+        <Switch>
+              <Route exact path="/"><BreedsPage/></Route>
+              <Route exact path="/Breeds"><BreedsPage/></Route>
+              <Route exact path="/breeds/:breed"><BreedPage /></Route>
+              <Route path="*"><NotFoundPage/></Route>
+        </Switch>
+
+      </HashRouter>
     </div>
   );
 }
