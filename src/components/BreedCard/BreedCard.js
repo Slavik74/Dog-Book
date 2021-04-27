@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import './BreedCard.css';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { Card } from "react-bootstrap";
 
 function BreedCard({breed, changeImage}) {
@@ -10,6 +10,9 @@ function BreedCard({breed, changeImage}) {
     const [redirectTo, setRedirectTo] = useState("");
     const history = useHistory()
 
+    const cardTitle=breed.charAt(0).toUpperCase() + breed.slice(1);
+        
+        
     useEffect(() => {
         axios.get("https://dog.ceo/api/breed/" + breed + "/images/random").then(res => {
             const newImg = res.data.message;
@@ -22,9 +25,14 @@ function BreedCard({breed, changeImage}) {
         return <Redirect to={'/breeds/' + redirectTo}/>
     } else {
         return (
-            <Card className ="c-breedcard">
-                <Card.Title>{breed}</Card.Title>
-                <img src={img} alt={breed} onClick={() => history.push('/breeds/' + breed)} /> 
+            <Card className ="c-breedcard" >
+                <Card.Title style={{ display:'flex', justifyContent:'center'}}>
+                    <Link to={'/breeds/' + breed}>{cardTitle}</Link>
+                </Card.Title>
+                <img src={img} alt={breed} onClick={() => {
+                history.push('/breeds/' + breed);
+                setRedirectTo('/breeds/' + breed);
+            }} /> 
             </Card>
         );
     }

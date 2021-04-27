@@ -10,7 +10,8 @@ export default function BreedPage() {
     const { breed } = useParams();
     const [imgList, setImgList] = useState();
 
-      
+    const cardTitle=breed.charAt(0).toUpperCase() + breed.slice(1);
+    
     useEffect(() => {
         axios.get("https://dog.ceo/api/breed/" + breed + "/images").then(res => {
             const imgs = res.data.message;
@@ -23,7 +24,7 @@ export default function BreedPage() {
 
     return (
         imgList ? <div className="p-breed">
-                    <div className="display-3 headline">{breed}</div>
+                    <div className="display-3 headline">{cardTitle}</div>
                     <Container>
                         <MasonryImages images={ imgList }></MasonryImages>
                     </Container>                        
