@@ -1,6 +1,6 @@
 {
   "homepage": "https://myusername.github.io/dog-book",
-  "name": "dogs-book-app",
+  "name": "dog-book",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
